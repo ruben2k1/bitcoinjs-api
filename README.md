@@ -28,7 +28,7 @@ console.log(keypair.privateKey);
 console.log(keypair.address);
 ```
 
-## Instalation
+## Installation
 
 ``` bash
 npm install bitcoinjs-api
