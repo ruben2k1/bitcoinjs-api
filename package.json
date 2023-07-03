@@ -1,15 +1,28 @@
 {
   "name": "bitcoinjs-api",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
-    "bitcoinjs-lib"
+    "bitcoin",
+    "bitcoinjs",
+    "blockchain",
+    "bitcoinjs-lib",
+    "crypto",
+    "wallet",
+    "transaction",
+    "multisig",
+    "payment",
+    "wif",
+    "bip32",
+    "bip37",
+    "bip21",
+    "api"
   ],
-  "author": "",
+  "author": "ruben2k1 (https://github.com/ruben2k1)",
   "license": "MIT",
   "dependencies": {
     "bitcoinjs-lib": "^6.1.3",

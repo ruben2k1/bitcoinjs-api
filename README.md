@@ -6,12 +6,23 @@ Released under the terms of the [MIT LICENSE](LICENSE).
 
 ## Documentation
 
-* Generate key pair (private and public)
+* Generate Legacy key pair
 
 ``` bash
 const bitcoinjsapi  = require('bitcoinjs-api');
 
-const keypair = new bitcoinjsapi.Bitcoin().generateKeypair();
+const keypair = new bitcoinjsapi.Bitcoin().generateKeypairLegacy();
+
+console.log(keypair.privateKey);
+console.log(keypair.address);
+```
+
+* Generate Segwit key pair
+
+``` bash
+const bitcoinjsapi  = require('bitcoinjs-api');
+
+const keypair = new bitcoinjsapi.Bitcoin().generateKeypairSegwit();
 
 console.log(keypair.privateKey);
 console.log(keypair.address);
