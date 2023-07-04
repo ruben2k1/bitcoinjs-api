@@ -19,6 +19,16 @@ class Bitcoin {
     
         return { privateKey, address };
     }
+
+    generateLegacyAddress(WIF) {
+        const keyPair = ECPair.fromWIF(
+            WIF
+        );
+    
+        const { address } = bitcoin.payments.p2pkh({ pubkey: keyPair.publicKey });
+    
+        return address;
+    }
 }
 
 module.exports = Bitcoin;

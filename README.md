@@ -4,6 +4,14 @@ A library to simplify the NPM package [bitcoinjs-lib](https://github.com/bitcoin
 
 Released under the terms of the [MIT LICENSE](LICENSE).
 
+## Installation
+
+``` bash
+npm install bitcoinjs-api
+
+npm install ecpair bip32 tiny-secp256k1
+```
+
 ## Documentation
 
 * Generate Legacy key pair
@@ -28,10 +36,12 @@ console.log(keypair.privateKey);
 console.log(keypair.address);
 ```
 
-## Installation
+* Generate Legacy address from WIF
 
 ``` bash
-npm install bitcoinjs-api
+const bitcoinjsapi  = require('bitcoinjs-api');
 
-npm install ecpair bip32 tiny-secp256k1
+const address = new bitcoinjsapi.Bitcoin().generateLegacyAddress(WIF);
+
+console.log(address);
 ```
