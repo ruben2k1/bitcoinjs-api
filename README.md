@@ -66,3 +66,13 @@ const address = new bitcoinjsapi.Bitcoin().generateSegwitAddress(WIF);
 
 console.log(address);
 ```
+
+* Generate P2SH, Pay-To-Multisig (2 of 3), address from Pubkeys
+
+``` bash
+const bitcoinjsapi  = require('bitcoinjs-api');
+
+const address = new bitcoinjsapi.Bitcoin().generateP2SHAddress2of3(PUBKEY1, PUBKEY2, PUBKEY3);
+
+console.log(address);
+```

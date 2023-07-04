@@ -53,6 +53,20 @@ class Bitcoin {
     
         return address;
     }
+
+    generateP2SHAddress2of3 (PUBKEY1, PUBKEY2, PUBKEY3) {
+        const pubkeys = [
+            PUBKEY1,
+            PUBKEY2,
+            PUBKEY3,
+        ].map(hex => Buffer.from(hex, 'hex'));
+        
+        const { address } = bitcoin.payments.p2sh({
+            redeem: bitcoin.payments.p2ms({ m: 2, pubkeys })
+        });
+        
+        return address;
+    }
 }
 
 module.exports = Bitcoin;
