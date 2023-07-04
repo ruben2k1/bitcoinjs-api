@@ -45,3 +45,13 @@ const address = new bitcoinjsapi.Bitcoin().generateLegacyAddress(WIF);
 
 console.log(address);
 ```
+
+* Generate Segwit address from WIF
+
+``` bash
+const bitcoinjsapi  = require('bitcoinjs-api');
+
+const address = new bitcoinjsapi.Bitcoin().generateSegwitAddress(WIF);
+
+console.log(address);
+```

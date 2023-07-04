@@ -29,6 +29,16 @@ class Bitcoin {
     
         return address;
     }
+
+    generateSegwitAddress (WIF) {
+        const keyPair = ECPair.fromWIF(
+            WIF
+        );
+    
+        const { address } = bitcoin.payments.p2wpkh({ pubkey: keyPair.publicKey });
+    
+        return address;
+    }
 }
 
 module.exports = Bitcoin;
