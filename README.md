@@ -36,6 +36,17 @@ console.log(keypair.privateKey);
 console.log(keypair.address);
 ```
 
+* Generate Testnet key pair
+
+``` bash
+const bitcoinjsapi  = require('bitcoinjs-api');
+
+const keypair = new bitcoinjsapi.Bitcoin().generateKeypairTestnet();
+
+console.log(keypair.privateKey);
+console.log(keypair.address);
+```
+
 * Generate Legacy address from WIF
 
 ``` bash

@@ -20,6 +20,20 @@ class Bitcoin {
         return { privateKey, address };
     }
 
+    generateKeypairTestnet() {
+        const TESTNET = bitcoin.networks.testnet;
+    
+        const keyPair = ECPair.makeRandom({ network: TESTNET });
+        const privateKey = keyPair.toWIF();
+    
+        const { address } = bitcoin.payments.p2pkh({
+          pubkey: keyPair.publicKey,
+          network: TESTNET
+        });
+    
+        return { privateKey, address };
+    }
+
     generateLegacyAddress(WIF) {
         const keyPair = ECPair.fromWIF(
             WIF
