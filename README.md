@@ -22,6 +22,7 @@ const bitcoinjsapi  = require('bitcoinjs-api');
 const keypair = new bitcoinjsapi.Bitcoin().generateKeypairLegacy();
 
 console.log(keypair.privateKey);
+console.log(keypair.publicKey);
 console.log(keypair.address);
 ```
 
@@ -33,6 +34,7 @@ const bitcoinjsapi  = require('bitcoinjs-api');
 const keypair = new bitcoinjsapi.Bitcoin().generateKeypairSegwit();
 
 console.log(keypair.privateKey);
+console.log(keypair.publicKey);
 console.log(keypair.address);
 ```
 
@@ -44,6 +46,7 @@ const bitcoinjsapi  = require('bitcoinjs-api');
 const keypair = new bitcoinjsapi.Bitcoin().generateKeypairTestnet();
 
 console.log(keypair.privateKey);
+console.log(keypair.publicKey);
 console.log(keypair.address);
 ```
 
