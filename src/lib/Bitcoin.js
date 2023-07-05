@@ -7,23 +7,26 @@ class Bitcoin {
     generateKeypairLegacy() {
         const keyPair = ECPair.makeRandom();
         const privateKey = keyPair.toWIF();
+        const publicKey = keyPair.publicKey.toString('hex');
         const { address } = bitcoin.payments.p2pkh({ pubkey: keyPair.publicKey });
     
-        return { privateKey, address };
+        return { privateKey, publicKey, address };
     }
 
     generateKeypairSegwit() {
         const keyPair = ECPair.makeRandom();
+        const publicKey = keyPair.publicKey.toString('hex');
         const privateKey = keyPair.toWIF();
         const { address } = bitcoin.payments.p2wpkh({ pubkey: keyPair.publicKey });
     
-        return { privateKey, address };
+        return { privateKey, publicKey, address };
     }
 
     generateKeypairTestnet() {
         const TESTNET = bitcoin.networks.testnet;
     
         const keyPair = ECPair.makeRandom({ network: TESTNET });
+        const publicKey = keyPair.publicKey.toString('hex');
         const privateKey = keyPair.toWIF();
     
         const { address } = bitcoin.payments.p2pkh({
@@ -31,7 +34,7 @@ class Bitcoin {
           network: TESTNET
         });
     
-        return { privateKey, address };
+        return { privateKey, publicKey, address };
     }
 
     generateLegacyAddress(WIF) {
