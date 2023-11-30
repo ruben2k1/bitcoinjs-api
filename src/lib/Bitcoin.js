@@ -1,7 +1,11 @@
 const bitcoin = require('bitcoinjs-lib');
+const bip39 = require('bip39');
+const { BIP32Factory } = require('bip32');
 const { ECPairFactory } = require('ecpair');
 const ecc = require('tiny-secp256k1');
+const Buffer = require('bitcoinjs-lib/src/types');
 const ECPair = ECPairFactory(ecc);
+const bip32 = BIP32Factory(ecc);
 
 class Bitcoin {
     generateKeypairLegacy() {
@@ -37,7 +41,7 @@ class Bitcoin {
         return { privateKey, publicKey, address };
     }
 
-    generateLegacyAddress(WIF) {
+    generateLegacyAddress (WIF) {
         const keyPair = ECPair.fromWIF(
             WIF
         );
@@ -69,6 +73,21 @@ class Bitcoin {
         });
         
         return address;
+    }
+
+    generateMnemonicAndNativeSegwit (NETWORK) {
+        if (!NETWORK) {
+            throw new Error('You must specify the network');
+        }
+    
+        const mnemonic = bip39.generateMnemonic();
+        const seed = bip39.mnemonicToSeedSync(mnemonic);
+        const rootNode = bip32.fromSeed(seed, NETWORK);
+    
+        const childNode = rootNode.derivePath("m/84'/0'/0'/0/0");
+        const { address } = bitcoin.payments.p2wpkh({ pubkey: childNode.publicKey, network: NETWORK });
+        
+        return { mnemonic, address }
     }
 }
 

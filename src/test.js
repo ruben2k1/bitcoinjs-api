@@ -1,7 +1,7 @@
 const bitcoin = require('./lib/Bitcoin');
-
+const btc = require('bitcoinjs-lib');
 const Bitcoin = new bitcoin();
-const keypair = Bitcoin.generateKeypairSegwit();
+const results = Bitcoin.generateMnemonicAndNativeSegwit(btc.networks.bitcoin);
 
-console.log(keypair.privateKey);
-console.log(keypair.address);
+console.log(results.mnemonic);
+console.log(results.address);
