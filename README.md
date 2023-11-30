@@ -79,3 +79,14 @@ const address = new bitcoinjsapi.Bitcoin().generateP2SHAddress2of3(PUBKEY1, PUBK
 
 console.log(address);
 ```
+
+* Generate Mnemonic Phrase and Segwit Native
+
+``` bash
+const bitcoinjsapi  = require('bitcoinjs-api');
+
+const results = new bitcoinjsapi.Bitcoin().generateMnemonicAndNativeSegwit(NETWORK);
+
+console.log(results.mnemonic);
+console.log(results.address);
+```
