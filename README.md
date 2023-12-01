@@ -14,4 +14,4 @@ npm install bitcoinjs-lib ecpair bip32 bip39 tiny-secp256k1
 
 ## Documentation
 
-[Addresses](https://github.com/ruben2k1/bitcoinjs-api/blob/master/src/docs/addresses.md)
+[Addresses](https://github.com/ruben2k1/bitcoinjs-api/blob/master/src/docs/ADDRESSES.md)
