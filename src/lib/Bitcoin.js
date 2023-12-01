@@ -3,7 +3,6 @@ const bip39 = require('bip39');
 const { BIP32Factory } = require('bip32');
 const { ECPairFactory } = require('ecpair');
 const ecc = require('tiny-secp256k1');
-const Buffer = require('bitcoinjs-lib/src/types');
 const ECPair = ECPairFactory(ecc);
 const bip32 = BIP32Factory(ecc);
 
@@ -70,6 +69,21 @@ class Bitcoin {
         
         const { address } = bitcoin.payments.p2sh({
             redeem: bitcoin.payments.p2ms({ m: 2, pubkeys })
+        });
+        
+        return address;
+    }
+
+    generateSegwitP2WSHAddress3of4(PUBKEY1, PUBKEY2, PUBKEY3, PUBKEY4) {
+        const pubkeys = [
+            PUBKEY1,
+            PUBKEY2,
+            PUBKEY3,
+            PUBKEY4
+        ].map(hex => Buffer.from(hex, 'hex'));
+        
+        const { address } = bitcoin.payments.p2wsh({
+            redeem: bitcoin.payments.p2ms({ m: 3, pubkeys }),
         });
         
         return address;
