@@ -1,4 +1,4 @@
-## Addresses Documentation
+## Addresses
 
 * Generate Legacy key pair
 
