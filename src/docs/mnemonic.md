@@ -1,5 +1,15 @@
 ## Mnemonic
 
+* Generate Mnemonic Seed
+
+``` bash
+const bitcoinjsapi  = require('bitcoinjs-api');
+
+const mnemonicSeed = new bitcoinjsapi.Bitcoin().generateMnemonicSeed();
+
+console.log(mnemonicSeed);
+```
+
 * Generate Mnemonic Phrase and Segwit Native
 
 ``` bash
@@ -9,14 +19,4 @@ const results = new bitcoinjsapi.Bitcoin().generateMnemonicAndNativeSegwit(NETWO
 
 console.log(results.mnemonic);
 console.log(results.address);
-```
-
-* Generate Mnemonic Seed
-
-``` bash
-const bitcoinjsapi  = require('bitcoinjs-api');
-
-const mnemonicSeed = new bitcoinjsapi.Bitcoin().generateMnemonicSeed();
-
-console.log(mnemonicSeed);
 ```
