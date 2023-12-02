@@ -89,6 +89,12 @@ class Bitcoin {
         return address;
     }
 
+    generateMnemonicSeed() {
+        const mnemonic = bip39.generateMnemonic();
+    
+        return mnemonic;
+    }
+
     generateMnemonicAndNativeSegwit (NETWORK) {
         if (!NETWORK) {
             throw new Error('You must specify the network');
