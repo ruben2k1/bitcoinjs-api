@@ -17,9 +17,11 @@
     "multisig",
     "payment",
     "wif",
+    "bip21",
     "bip32",
     "bip37",
-    "bip21",
+    "bip39",
+    "bip44",
     "api"
   ],
   "author": "ruben2k1 (https://github.com/ruben2k1)",
