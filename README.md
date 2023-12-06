@@ -9,7 +9,7 @@ Released under the terms of the [MIT LICENSE](LICENSE).
 ``` bash
 npm install bitcoinjs-api
 
-npm install bitcoinjs-lib ecpair bip32 bip39 tiny-secp256k1
+npm install bitcoinjs-lib ecpair bip32 bip39 tiny-secp256k1 axios
 ```
 
 ## Documentation
