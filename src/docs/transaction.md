@@ -3,9 +3,7 @@
 * Get UTXOS
 
 ``` bash
-const bitcoinjsapi = require('bitcoinjs-api');
+const address = await Bitcoin.getUtxos('bc1qput0gcms80khke8w6wgj433yglm9x8djg8u6w7', 'MAINNET');
 
-const utxos = new bitcoinjsapi.Bitcoin().getUtxos(ADDRESS: string, NETWORK: string);
-
-console.log(utxos);
+console.log(address);
 ```
