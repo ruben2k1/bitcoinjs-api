@@ -109,6 +109,24 @@ class Bitcoin {
         
         return { mnemonic, address }
     }
+
+    async getUtxos(ADDRESS, NETWORK) {
+        if (!ADDRESS) {
+            throw new Error('You must specify an address');
+        } else if (!NETWORK) {
+            throw new Error('You must specify a network (MAINNET or TESTNET)');
+        }
+
+        if (NETWORK === 'MAINNET') {
+            const utxos = await axios(`https://blockstream.info/api/address/${ADDRESS}/txs`);
+
+            return utxos.data;
+        } else if (NETWORK === 'TESTNET') {
+            const utxos = await axios(`https://blockstream.info/testnet/api/address/${ADDRESS}/utxo`);
+
+            return utxos.data;
+        }
+    }
 }
 
 module.exports = Bitcoin;
