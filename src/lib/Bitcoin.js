@@ -5,6 +5,7 @@ const { ECPairFactory } = require('ecpair');
 const ecc = require('tiny-secp256k1');
 const ECPair = ECPairFactory(ecc);
 const bip32 = BIP32Factory(ecc);
+const axios = require('axios').default;
 
 class Bitcoin {
     generateKeypairLegacy() {
