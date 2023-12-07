@@ -20,3 +20,15 @@ const results = new bitcoinjsapi.Bitcoin().generateMnemonicAndNativeSegwit(NETWO
 console.log(results.mnemonic);
 console.log(results.address);
 ```
+
+* Generate WIF from XPRIV
+
+``` bash
+const Bitcoin = require('bitcoinjs-api').Bitcoin;
+
+const bitcoin = new Bitcoin();
+
+const WIF = await bitcoin.getWIFfromXPRIV(XPRIV : string, NETWORK : Network); //bitcoin.networks.bitcoin or bitcoin.networks.testnet
+
+console.log(WIF);
+```
