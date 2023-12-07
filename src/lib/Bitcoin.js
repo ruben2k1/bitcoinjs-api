@@ -7,6 +7,7 @@ const ECPair = ECPairFactory(ecc);
 const bip32 = BIP32Factory(ecc);
 const axios = require('axios').default;
 
+
 class Bitcoin {
     generateKeypairLegacy() {
         const keyPair = ECPair.makeRandom();
