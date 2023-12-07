@@ -5,10 +5,17 @@ const { ECPairFactory } = require('ecpair');
 const ecc = require('tiny-secp256k1');
 const ECPair = ECPairFactory(ecc);
 const bip32 = BIP32Factory(ecc);
+const { networks } = bitcoin;
 const axios = require('axios').default;
 
-
 class Bitcoin {
+    constructor() {
+        this.ECPair = ECPairFactory(ecc);
+        this.bip32 = BIP32Factory(ecc);
+        this.bip39 = bip39;
+        this.networks = networks;
+    }
+
     generateKeypairLegacy() {
         const keyPair = ECPair.makeRandom();
         const privateKey = keyPair.toWIF();
