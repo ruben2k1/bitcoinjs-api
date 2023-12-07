@@ -128,6 +128,18 @@ class Bitcoin {
             return utxos.data;
         }
     }
+
+    getWIFfromXPRIV(XPRIV, NETWORK) {
+        if (!XPRIV) {
+            throw new Error('You must specify XPRIV');
+        } else if (!NETWORK) {
+            throw new Error('You must specify a network');
+        }
+
+        const WIF = bip32.fromBase58(XPRIV, NETWORK).toWIF();
+    
+        return WIF;
+    }
 }
 
 module.exports = Bitcoin;
