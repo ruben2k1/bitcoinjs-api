@@ -106,7 +106,7 @@ class Bitcoin {
 
     generateMnemonicAndNativeSegwit (NETWORK) {
         if (!NETWORK) {
-            throw new Error('You must specify the network');
+            throw new Error('You must specify a network');
         }
     
         const mnemonic = bip39.generateMnemonic();
@@ -123,14 +123,14 @@ class Bitcoin {
         if (!ADDRESS) {
             throw new Error('You must specify an address');
         } else if (!NETWORK) {
-            throw new Error('You must specify a network (MAINNET or TESTNET)');
+            throw new Error('You must specify a network');
         }
 
-        if (NETWORK === 'MAINNET') {
+        if (NETWORK === bitcoin.networks.bitcoin) {
             const utxos = await axios(`https://blockstream.info/api/address/${ADDRESS}/txs`);
 
             return utxos.data;
-        } else if (NETWORK === 'TESTNET') {
+        } else if (NETWORK === bitcoin.networks.testnet) {
             const utxos = await axios(`https://blockstream.info/testnet/api/address/${ADDRESS}/utxo`);
 
             return utxos.data;
@@ -147,6 +147,40 @@ class Bitcoin {
         const WIF = bip32.fromBase58(XPRIV, NETWORK).toWIF();
     
         return WIF;
+    }
+
+    async getBalance(ADDRESS, NETWORK) {
+        if (!ADDRESS) {
+            throw new Error('You must specify an address');
+        } else if (!NETWORK) {
+            throw new Error('You must specify a network');
+        }
+
+        if (NETWORK === bitcoin.networks.bitcoin) {
+            const results = await axios(`https://api.blockcypher.com/v1/btc/main/addrs/${ADDRESS}/balance`);
+        
+            return results.data;
+        }else if (NETWORK === bitcoin.networks.testnet) {
+            const results = await axios(`https://api.blockcypher.com/v1/btc/test3/addrs/${ADDRESS}/balance`);
+        
+            return results.data;
+        }
+    }
+
+    async getEstimatedFees(NETWORK) {
+        if (!NETWORK) {
+            throw new Error('You must specify a network');
+        }
+
+        if (NETWORK === bitcoin.networks.bitcoin) {
+            const results = await axios('https://mempool.space/api/v1/fees/recommended');
+    
+            return results.data;
+        }else if (NETWORK === bitcoin.networks.testnet) {
+            const results = await axios('https://mempool.space/testnet/api/v1/fees/recommended');
+    
+            return results.data;
+        }
     }
 }
 
