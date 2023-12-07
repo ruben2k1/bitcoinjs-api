@@ -3,32 +3,29 @@
 * Generate Mnemonic Seed
 
 ``` bash
-const bitcoinjsapi = require('bitcoinjs-api');
+const bitcoin = new Bitcoin();
 
-const mnemonicSeed = new bitcoinjsapi.Bitcoin().generateMnemonicSeed();
+const results = bitcoin.generateMnemonicSeed();
 
-console.log(mnemonicSeed);
+console.log(results);
 ```
 
 * Generate Mnemonic Phrase and Segwit Native
 
 ``` bash
-const bitcoinjsapi = require('bitcoinjs-api');
+const bitcoin = new Bitcoin();
 
-const results = new bitcoinjsapi.Bitcoin().generateMnemonicAndNativeSegwit(NETWORK);
+const results = bitcoin.generateMnemonicAndNativeSegwit(NETWORK : Network);
 
-console.log(results.mnemonic);
-console.log(results.address);
+console.log(results);
 ```
 
 * Generate WIF from XPRIV
 
 ``` bash
-const Bitcoin = require('bitcoinjs-api').Bitcoin;
-
 const bitcoin = new Bitcoin();
 
-const WIF = await bitcoin.getWIFfromXPRIV(XPRIV : string, NETWORK : Network); //bitcoin.networks.bitcoin or bitcoin.networks.testnet
+const results = bitcoin.getWIFfromXPRIV(XPRIV : string, NETWORK : Network);
 
-console.log(WIF);
+console.log(results);
 ```

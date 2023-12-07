@@ -3,45 +3,39 @@
 * Generate Legacy key pair
 
 ``` bash
-const bitcoinjsapi = require('bitcoinjs-api');
+const bitcoin = new Bitcoin();
 
-const keypair = new bitcoinjsapi.Bitcoin().generateKeypairLegacy();
+const results = bitcoin.generateKeypairLegacy();
 
-console.log(keypair.privateKey);
-console.log(keypair.publicKey);
-console.log(keypair.address);
+console.log(results);
 ```
 
 * Generate Segwit key pair
 
 ``` bash
-const bitcoinjsapi = require('bitcoinjs-api');
+const bitcoin = new Bitcoin();
 
-const keypair = new bitcoinjsapi.Bitcoin().generateKeypairSegwit();
+const results = bitcoin.generateKeypairSegwit();
 
-console.log(keypair.privateKey);
-console.log(keypair.publicKey);
-console.log(keypair.address);
+console.log(results);
 ```
 
 * Generate Testnet key pair
 
 ``` bash
-const bitcoinjsapi = require('bitcoinjs-api');
+const bitcoin = new Bitcoin();
 
-const keypair = new bitcoinjsapi.Bitcoin().generateKeypairTestnet();
+const results = bitcoin.generateKeypairTestnet();
 
-console.log(keypair.privateKey);
-console.log(keypair.publicKey);
-console.log(keypair.address);
+console.log(results);
 ```
 
 * Generate Legacy address from WIF
 
 ``` bash
-const bitcoinjsapi = require('bitcoinjs-api');
+const bitcoin = new Bitcoin();
 
-const address = new bitcoinjsapi.Bitcoin().generateLegacyAddress(WIF);
+const address = bitcoin.generateLegacyAddress(WIF : string);
 
 console.log(address);
 ```
@@ -49,34 +43,29 @@ console.log(address);
 * Generate Segwit address from WIF
 
 ``` bash
-const bitcoinjsapi = require('bitcoinjs-api');
+const bitcoin = new Bitcoin();
 
-const address = new bitcoinjsapi.Bitcoin().generateSegwitAddress(WIF);
-
-console.log(address);
-```
-
-* Generate P2SH, Pay-To-Multisig (2 of 3), address from Pubkeys
-
-``` bash
-const bitcoinjsapi = require('bitcoinjs-api');
-
-const address = new bitcoinjsapi.Bitcoin().generateP2SHAddress2of3(PUBKEY1, PUBKEY2, PUBKEY3);
+const address = bitcoin.generateSegwitAddress(WIF : string);
 
 console.log(address);
 ```
 
-* Generate Segwit P2WSH, Pay-To-Multisig (3 of 4), address from Pubkeys
+* Generate P2SH, Pay-To-Multisig (2 of 3), address from XPUBS
 
 ``` bash
-const bitcoinjsapi = require('bitcoinjs-api');
+const bitcoin = new Bitcoin();
 
-const address = new bitcoinjsapi.Bitcoin().generateSegwitP2WSHAddress3of4(
-'026477115981fe981a6918a6297d9803c4dc04f328f22041bedff886bbc2962e01',
-'02c96db2302d19b43d4c69368babace7854cc84eb9e061cde51cfa77ca4a22b8b9',
-'023e4740d0ba639e28963f3476157b7cf2fb7c6fdf4254f97099cf8670b505ea59',
-'03c6103b3b83e4a24a0e33a4df246ef11772f9992663db0c35759a5e2ebf68d8e9',
-);
+const address = bitcoin.generateP2SHAddress2of3(PUBKEY1 : string, PUBKEY2 : string, PUBKEY3 : string);
+
+console.log(address);
+```
+
+* Generate Segwit P2WSH, Pay-To-Multisig (3 of 4), address from XPUBS
+
+``` bash
+const bitcoin = new Bitcoin();
+
+const address = bitcoin.generateSegwitP2WSHAddress3of4(PUBKEY1 : string, PUBKEY2 : string, PUBKEY3 : string, PUBKEY4 : string);
 
 console.log(address);
 ```
