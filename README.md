@@ -2,7 +2,7 @@
 
 A library to simplify the NPM package [bitcoinjs-lib](https://github.com/bitcoinjs/bitcoinjs-lib).
 
-Released under the terms of the [MIT LICENSE](LICENSE).
+Released under the terms of the [MIT LICENSE](https://github.com/ruben2k1/bitcoinjs-api/blob/master/LICENSE).
 
 ## Installation
 
