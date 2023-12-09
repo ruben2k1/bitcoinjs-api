@@ -49,7 +49,7 @@ class Bitcoin {
         return { privateKey, publicKey, address };
     }
 
-    generateLegacyAddress (WIF) {
+    generateLegacyAddressFromWIF (WIF) {
         const keyPair = ECPair.fromWIF(
             WIF
         );
@@ -59,7 +59,7 @@ class Bitcoin {
         return address;
     }
 
-    generateSegwitAddress (WIF) {
+    generateSegwitAddressFromWIF (WIF) {
         const keyPair = ECPair.fromWIF(
             WIF
         );
@@ -83,7 +83,7 @@ class Bitcoin {
         return address;
     }
 
-    generateSegwitP2WSHAddress3of4(PUBKEY1, PUBKEY2, PUBKEY3, PUBKEY4) {
+    generateSegwitP2WSHAddress3of4 (PUBKEY1, PUBKEY2, PUBKEY3, PUBKEY4) {
         const pubkeys = [
             PUBKEY1,
             PUBKEY2,
@@ -119,7 +119,7 @@ class Bitcoin {
         return { mnemonic, address }
     }
 
-    async getUtxos(ADDRESS, NETWORK) {
+    async getUtxos (ADDRESS, NETWORK) {
         if (!ADDRESS) {
             throw new Error('You must specify an address');
         } else if (!NETWORK) {
@@ -137,7 +137,7 @@ class Bitcoin {
         }
     }
 
-    getWIFfromXPRIV(XPRIV, NETWORK) {
+    getWIFfromXPRIV (XPRIV, NETWORK) {
         if (!XPRIV) {
             throw new Error('You must specify XPRIV');
         } else if (!NETWORK) {
@@ -149,7 +149,7 @@ class Bitcoin {
         return WIF;
     }
 
-    async getBalance(ADDRESS, NETWORK) {
+    async getBalance (ADDRESS, NETWORK) {
         if (!ADDRESS) {
             throw new Error('You must specify an address');
         } else if (!NETWORK) {
@@ -167,7 +167,7 @@ class Bitcoin {
         }
     }
 
-    async getEstimatedFees(NETWORK) {
+    async getEstimatedFees (NETWORK) {
         if (!NETWORK) {
             throw new Error('You must specify a network');
         }
