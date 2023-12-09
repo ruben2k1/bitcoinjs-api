@@ -35,7 +35,7 @@ console.log(results);
 ``` bash
 const bitcoin = new Bitcoin();
 
-const address = bitcoin.generateLegacyAddress(WIF : string);
+const address = bitcoin.generateLegacyAddressFromWIF(WIF : string);
 
 console.log(address);
 ```
@@ -45,7 +45,7 @@ console.log(address);
 ``` bash
 const bitcoin = new Bitcoin();
 
-const address = bitcoin.generateSegwitAddress(WIF : string);
+const address = bitcoin.generateSegwitAddressFromWIF(WIF : string);
 
 console.log(address);
 ```
