@@ -49,7 +49,7 @@ class Bitcoin {
         return { privateKey, publicKey, address };
     }
 
-    generateLegacyAddressFromWIF (WIF) {
+    generateLegacyAddressFromWIF(WIF) {
         const keyPair = ECPair.fromWIF(
             WIF
         );
@@ -59,7 +59,7 @@ class Bitcoin {
         return address;
     }
 
-    generateSegwitAddressFromWIF (WIF) {
+    generateSegwitAddressFromWIF(WIF) {
         const keyPair = ECPair.fromWIF(
             WIF
         );
@@ -69,7 +69,7 @@ class Bitcoin {
         return address;
     }
 
-    generateP2SHAddress2of3 (PUBKEY1, PUBKEY2, PUBKEY3) {
+    generateP2SHAddress2of3(PUBKEY1, PUBKEY2, PUBKEY3) {
         const pubkeys = [
             PUBKEY1,
             PUBKEY2,
@@ -83,7 +83,7 @@ class Bitcoin {
         return address;
     }
 
-    generateSegwitP2WSHAddress3of4 (PUBKEY1, PUBKEY2, PUBKEY3, PUBKEY4) {
+    generateSegwitP2WSHAddress3of4(PUBKEY1, PUBKEY2, PUBKEY3, PUBKEY4) {
         const pubkeys = [
             PUBKEY1,
             PUBKEY2,
@@ -104,7 +104,7 @@ class Bitcoin {
         return mnemonic;
     }
 
-    generateMnemonicAndNativeSegwit (NETWORK) {
+    generateMnemonicAndNativeSegwit(NETWORK) {
         if (!NETWORK) {
             throw new Error('You must specify a network');
         }
@@ -119,7 +119,7 @@ class Bitcoin {
         return { mnemonic, address }
     }
 
-    async getUtxos (ADDRESS, NETWORK) {
+    async getUtxos(ADDRESS, NETWORK) {
         if (!ADDRESS) {
             throw new Error('You must specify an address');
         } else if (!NETWORK) {
@@ -127,17 +127,17 @@ class Bitcoin {
         }
 
         if (NETWORK === bitcoin.networks.bitcoin) {
-            const utxos = await axios(`https://blockstream.info/api/address/${ADDRESS}/txs`);
-
+            const utxos = await axios(`https://mempool.space/api/address/${ADDRESS}/utxo`);
+    
             return utxos.data;
         } else if (NETWORK === bitcoin.networks.testnet) {
-            const utxos = await axios(`https://blockstream.info/testnet/api/address/${ADDRESS}/utxo`);
-
+            const utxos = await axios(`https://mempool.space/testnet/api/address/${ADDRESS}/utxo`);
+    
             return utxos.data;
         }
     }
 
-    getWIFfromXPRIV (XPRIV, NETWORK) {
+    getWIFfromXPRIV(XPRIV, NETWORK) {
         if (!XPRIV) {
             throw new Error('You must specify XPRIV');
         } else if (!NETWORK) {
@@ -149,7 +149,7 @@ class Bitcoin {
         return WIF;
     }
 
-    async getBalance (ADDRESS, NETWORK) {
+    async getBalance(ADDRESS, NETWORK) {
         if (!ADDRESS) {
             throw new Error('You must specify an address');
         } else if (!NETWORK) {
@@ -167,7 +167,7 @@ class Bitcoin {
         }
     }
 
-    async getEstimatedFees (NETWORK) {
+    async getEstimatedFees(NETWORK) {
         if (!NETWORK) {
             throw new Error('You must specify a network');
         }
@@ -180,6 +180,38 @@ class Bitcoin {
             const results = await axios('https://mempool.space/testnet/api/v1/fees/recommended');
     
             return results.data;
+        }
+    }
+
+    async getAddressConfirmedTransactions(ADDRESS) {
+        if (!ADDRESS) {
+            throw new Error('You must specify an address');
+        }
+
+        try {
+            const response = await axios.get(`https://mempool.space/testnet/api/address/${ADDRESS}/txs/chain`);
+            
+            return response.data;
+        } catch (error) {
+            console.error('Error:', error);
+            
+            return null;
+        }
+    }
+
+    async getAddressUnconfirmedTransactions(ADDRESS) {
+        if (!ADDRESS) {
+            throw new Error('You must specify an address');
+        }
+
+        try {
+            const response = await axios.get(`https://mempool.space/testnet/api/address/${ADDRESS}/txs/mempool`);
+            
+            return response.data;
+        } catch (error) {
+            console.error('Error:', error);
+            
+            return null;
         }
     }
 }
