@@ -119,7 +119,7 @@ class Bitcoin {
         return { mnemonic, address }
     }
 
-    async getUtxos(ADDRESS, NETWORK) {
+    async getAddressUtxos(ADDRESS, NETWORK) {
         if (!ADDRESS) {
             throw new Error('You must specify an address');
         } else if (!NETWORK) {
