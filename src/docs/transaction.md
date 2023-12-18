@@ -1,11 +1,11 @@
 ## Transaction
 
-* Get UTXOS
+* Get address UTXOS
 
 ``` bash
 const bitcoin = new Bitcoin();
 
-const results = await bitcoin.getUtxos(ADDRESS: string, NETWORK: Network);
+const results = await bitcoin.getAddressUtxos(ADDRESS: string, NETWORK: Network);
 
 console.log(results);
 ```
@@ -26,6 +26,26 @@ console.log(results);
 const bitcoin = new Bitcoin();
 
 const results = await bitcoin.getEstimatedFees(NETWORK : Network);
+
+console.log(results);
+```
+
+* Get address confirmed transactions (valid for now for testnet addresses)
+
+``` bash
+const bitcoin = new Bitcoin();
+
+const results = await bitcoin.getAddressConfirmedTransactions(ADDRESS : string);
+
+console.log(results);
+```
+
+* Get address unconfirmed transactions (valid for now for testnet addresses)
+
+``` bash
+const bitcoin = new Bitcoin();
+
+const results = await bitcoin.getAddressUnconfirmedTransactions(ADDRESS : string);
 
 console.log(results);
 ```
