@@ -183,35 +183,57 @@ class Bitcoin {
         }
     }
 
-    async getAddressConfirmedTransactions(ADDRESS) {
+    async getAddressConfirmedTransactions(ADDRESS, NETWORK) {
         if (!ADDRESS) {
             throw new Error('You must specify an address');
+        } else if (!NETWORK) {
+            throw new Error('You must specify a network');
         }
 
-        try {
-            const response = await axios.get(`https://mempool.space/testnet/api/address/${ADDRESS}/txs/chain`);
-            
-            return response.data;
-        } catch (error) {
-            console.error('Error:', error);
-            
-            return null;
+        if (NETWORK === bitcoin.networks.bitcoin) {
+            const results = await axios(`https://mempool.space/api/address/${ADDRESS}/txs/chain`);
+        
+            return results.data;
+        }else if (NETWORK === bitcoin.networks.testnet) {
+            const results = await axios(`https://mempool.space/testnet/api/address/${ADDRESS}/txs/chain`);
+        
+            return results.data;
         }
     }
 
-    async getAddressUnconfirmedTransactions(ADDRESS) {
+    async getAddressUnconfirmedTransactions(ADDRESS, NETWORK) {
         if (!ADDRESS) {
             throw new Error('You must specify an address');
+        } else if (!NETWORK) {
+            throw new Error('You must specify a network');
         }
 
-        try {
-            const response = await axios.get(`https://mempool.space/testnet/api/address/${ADDRESS}/txs/mempool`);
-            
-            return response.data;
-        } catch (error) {
-            console.error('Error:', error);
-            
-            return null;
+        if (NETWORK === bitcoin.networks.bitcoin) {
+            const results = await axios(`https://mempool.space/api/address/${ADDRESS}/txs/mempool`);
+        
+            return results.data;
+        }else if (NETWORK === bitcoin.networks.testnet) {
+            const results = await axios(`https://mempool.space/testnet/api/address/${ADDRESS}/txs/mempool`);
+        
+            return results.data;
+        }
+    }
+
+    async getHexTransaction(TXID, NETWORK) {
+        if (!TXID) {
+            throw new Error('You must specify a TXID');
+        } else if (!NETWORK) {
+            throw new Error('You must specify a network');
+        }
+        
+        if (NETWORK === bitcoin.networks.bitcoin) {
+            const results = await axios(`https://mempool.space/api/tx/${TXID}/hex`);
+        
+            return results.data;
+        }else if (NETWORK === bitcoin.networks.testnet) {
+            const results = await axios(`https://mempool.space/testnet/api/tx/${TXID}/hex`);
+        
+            return results.data;
         }
     }
 }
